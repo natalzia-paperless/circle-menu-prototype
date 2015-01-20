@@ -106,7 +106,7 @@ $(function(){
     } else {
       $.ajax({
         //replace me with your content
-        url: "partials/messages_panel.html",
+        url: "partials/lorem_ipsum.html",
         type: "GET",
         success: function(r) {
           appendInfo(r);
