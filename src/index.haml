@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %meta{ name: "viewport", content: "width=device-width,user-scalable=no,maximum-scale=1.0,initial-scale=1.0"}
+    %script{ src: "javascripts/lib/jquery-1.11.2.min.js" }
+    %script{ src: "javascripts/lib/velocity.min.js" }
+    %script{ src: "javascripts/lib/hammer.min.js" }
+    %script{ src: "javascripts/app.js" }
+    %link{rel: "stylesheet", type: "text/css", href: "styles/main.css"}
+  %body
+    .vpt-ctnr.js-vpt-ctnr
+      .viewport.js-viewport-prev
+      .viewport.js-viewport-current
+        %img{alt: "", src: "img/event_page.png"}
+      .viewport.js-viewport-next
+    .menu-holder.js-menu-holder
+      .circle--small-1.js-slide-change
+      .circle--small-2.js-slide-change
+      .circle.js-circle
+        %span
+          +

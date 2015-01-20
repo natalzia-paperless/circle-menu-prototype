@@ -1,0 +1,138 @@
+@import "lib/normalize";
+@import "compass/css3";
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  * {
+    @include box-sizing(border-box);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+}
+
+body {
+  overflow: hidden;
+}
+
+.vpt-ctnr {
+  height: 100%;
+  left: -100%;
+  overflow: hidden;
+  position: relative;
+  width: 300%;
+  -webkit-transform: translateZ(0);
+  @include transition(none);
+  &.left {
+    left: -200%;
+    @include transition(left .35s ease);
+  }
+  &.right {
+    left: 0%;
+    @include transition(left .35s ease);
+  }
+}
+
+.viewport {
+  display: inline-block;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  width: 33%;
+  -webkit-overflow-scrolling: touch;
+  img {
+    width: 100%;
+  }
+}
+
+.some-text {
+  font-size: 24px;
+  padding: 20px;
+}
+
+.box {
+  display: inline-block;
+  height: 150px;
+  width: 50%;
+  @for $i from 1 through 16 {
+    $red: random(256)-1;
+    $green: random(256)-1;
+    $blue: random(256)-1;
+    $alpha: 1;
+    &:nth-child(#{$i}) {
+      $c: rgba($red, $green, $blue, $alpha);
+      background-color: $c;
+      border: 1px solid darken($c, 15%)
+    }
+  }
+  &.scale {
+    -webkit-animation: grow-box .4s;
+    -webkit-animation-timing-function: cubic-bezier(.12,.33,.48,1.3);
+  }
+}
+
+@-webkit-keyframes grow-box {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.circle {
+  background-color: #CFCFCF;
+  border: 2px solid #B3B3B3;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 60px;
+  position: relative;
+  text-align: center;
+  width: 60px;
+  z-index: 2;
+  @include transition-property(transform);
+  @include transition-duration(.4s);
+  @include transition-timing-function(cubic-bezier(.12,.33,.48,1.3));
+  &.rotate {
+    @include transform(rotate(90deg));
+  }
+  span {
+    font-size: 36px;
+    display: inline-block;
+    height: 56px;
+    line-height: 52px;
+    font-weight: 100;
+  }
+}
+
+.circle--small {
+  @extend .circle;
+  height: 40px;
+  left: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  width: 40px;
+  @include transition-property(top);
+  @include transition-duration(.2s);
+  @include transition-timing-function(cubic-bezier(.12,.33,.48,1.3));
+}
+
+.menu-holder {
+  bottom: 10px;
+  position: fixed;
+  right: 10px;
+  &.open {
+    .circle--small {
+      top: 0px;
+    }
+  }
+}
+
+@for $i from 1 through 2 {
+  $top: 54 * (2 - $i) + 55;
+  $delay: .05 * (2 - $i);
+  .circle--small-#{$i} { 
+    @extend .circle--small;
+    top: #{$top}px;
+    @include transition-delay(#{$delay}s);
+  }
+}
