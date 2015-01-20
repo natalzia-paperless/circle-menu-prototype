@@ -34,12 +34,16 @@ $(function(){
   });
 
   hammer.on('swipeleft', function() {
-    PP.CircleMenu.currentIndex++;
-    PP.CircleMenu.lastTransition = "left";
-    changeViewport();
+    console.log('swipeleft');
+    if (PP.CircleMenu.currentIndex !== PP.CircleMenu.states.length -1) {
+      PP.CircleMenu.currentIndex++;
+      PP.CircleMenu.lastTransition = "left";
+      changeViewport();
+    }
   });
 
   hammer.on('swiperight', function() {
+    console.log('swiperight');
     if (PP.CircleMenu.states.length > 1 && PP.CircleMenu.currentIndex > 0) {
       PP.CircleMenu.currentIndex--;
       PP.CircleMenu.lastTransition = "right";
