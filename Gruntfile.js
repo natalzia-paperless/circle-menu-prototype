@@ -35,7 +35,23 @@ module.exports = function(grunt) {
           open: {
             target: '127.0.0.1:9001', // target url to open
           },
-          livereload: 9000
+          livereload: 9000,
+          middleware: function(connect, options) {
+            return [
+              function(req, res, next) {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+                res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+                // don't just call next() return it
+                return next();
+              },
+
+              // add other middlewares here 
+              connect.static(require('path').resolve('.'))
+
+            ];
+          }
         }
       }
     },
@@ -55,10 +71,11 @@ module.exports = function(grunt) {
         dest: 'public/img',
         flatten: false,
         filter: 'isFile',
-      }
+      },
     },
     clean: {
-      public: ["public/"]
+      public: ["public/"],
+      partials: ["public/partials"]
     },
     uglify: {
       js: {
@@ -87,7 +104,7 @@ module.exports = function(grunt) {
       },
       haml: {
         files: ["src/**/*.haml"],
-        tasks: ['haml']
+        tasks: ['clean:partials','haml']
       }
     }
   });

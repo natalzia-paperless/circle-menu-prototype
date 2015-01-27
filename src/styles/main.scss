@@ -1,5 +1,6 @@
 @import "lib/normalize";
 @import "compass/css3";
+@import "event_page/event_page";
 
 html, body {
   height: 100%;
@@ -48,7 +49,7 @@ body {
 }
 
 .some-text {
-  font-size: 24px;
+  font-size: 16px;
   padding: 20px;
 }
 
@@ -108,6 +109,7 @@ body {
   @extend .circle;
   height: 40px;
   left: 10px;
+  line-height: 38px;
   margin-bottom: 10px;
   position: relative;
   width: 40px;
@@ -125,6 +127,39 @@ body {
       top: 0px;
     }
   }
+}
+
+.guest-cntr {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px;
+  width: 33%;
+}
+
+.guest-pic {
+  border-radius: 50%;
+}
+
+.guest-name {
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.guest-list-header {
+  font-size: 26px;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+.guest-list {
+  text-align: center;
+}
+
+.guest-link {
+  color: #4B56D1;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 20px;
 }
 
 @for $i from 1 through 2 {

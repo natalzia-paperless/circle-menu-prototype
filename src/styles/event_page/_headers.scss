@@ -1,0 +1,153 @@
+// Used for the very top of the page
+.mobile-page-header {
+  background: $white;
+  border-bottom: 1px solid $alto;
+  color: $charcoal;
+  font-size: 0; //fixes inline block positioning
+  padding: 15px 0 10px 0;
+  width: 100%;
+  @include breakpoint($fullscreen) {
+    display: none;
+  }
+}
+
+.mobile-page-header__item {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  .icon {
+    background-size: cover;
+    height: 25px;
+    margin: 0 auto;
+    width: 25px;
+  }
+  .icon-subtext {
+    color: $boulder;
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .icon--text {
+    color: $boulder;
+    font-size: 20px;
+    position: relative;
+    top: 5px;
+  }
+  .icon--add-photo {
+    position: relative;
+    top: 2px;
+  }
+  svg {
+    fill: $boulder;
+  }
+}
+.mobile-page-header__item--1-col {
+  @extend .mobile-page-header__item;
+  text-align: left;
+  width: 100%;
+  .icon {
+    display: inline-block;
+    margin: 0 10px 0 20px;
+  }
+  .icon-subtext {
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 0;
+    position: relative;
+    top: -5px;
+    width: auto;
+  }
+}
+
+.mobile-page-header__item--2-col {
+  @extend .mobile-page-header__item;
+  width: 50%;
+}
+
+.mobile-page-header__item--3-col {
+  @extend .mobile-page-header__item;
+  width: 33%;
+}
+
+.module-header {
+  color: $boulder;
+  display: block;
+  font-size: 16px;
+  text-align: left;
+}
+
+.module-header--mobile {
+  @extend .module-header;
+  border-top: 1px solid $alto;
+  color: $charcoal;
+  font-size: 18px;
+  padding: 22px 15px;
+  position: relative;
+  @include breakpoint($fullscreen) {
+    display: none;
+  }
+  svg {
+    position: absolute;
+    right: 10px;
+    top: 25px;
+  }
+  &:first-child {
+    border-bottom: 1px solid $alto;
+  }
+}
+
+.module-header--note {
+  margin: 24px 0 14px;
+  &.module-header--desktop {
+    border-bottom: none;
+  }
+  @include breakpoint($fullscreen) {
+    //@extend .module-header--desktop;
+    margin: 8px 0;
+    padding: 0;
+  }
+}
+
+.module-header--dropdown {
+  @extend .module-header;
+  font-size: 16px;
+  margin: 10px 0;
+  padding-bottom: 0;
+  @include breakpoint($fullscreen) {
+    display: none;
+  }
+}
+
+.module-header--flyout {
+  @extend .module-header;
+  border-bottom: 1px solid $alto;
+  font-size: 18px;
+  padding: 10px 0;
+  text-align: center;
+  @include breakpoint($fullscreen) {
+    //@extend .module-header--desktop;
+    font-size: 16px;
+  }
+}
+
+.guest-list-header {
+  color: $charcoal;
+  font-size: 14px;
+  margin: 5px 0 0;
+  text-align: left;
+}
+
+.module-header--desktop {
+  @extend .module-header;
+  display: none;
+  @include breakpoint($fullscreen) {
+    border-bottom: 1px solid $alto;
+    clear: both;
+    display: inline-block;
+    margin: 0 0 5px;
+    padding-bottom: 6px;
+    padding-top: 0;
+  }
+}

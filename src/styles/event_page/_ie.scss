@@ -1,0 +1,231 @@
+%fallback {
+  display: inline-block;
+  position: relative;
+}
+
+.lt-ie10 {
+  .placeholder-background, .event-photos-module--full__background-image--placeholder {
+    background: $white;
+    filter: none;
+  }
+  .additional-guest-select {
+    padding: 0;
+  }
+  .additional-select-container {
+    &:after {
+      content: none;
+    }
+  }
+}
+.lt-ie9 {
+  .field--radio__button {
+    display: none;
+  }
+  .field--radio input[type="radio"] {
+    display: inline;
+
+  }
+  .rsvp-info.mobile-hide {
+    display: block;
+  }
+  .mobile-page-header {
+    display: none;
+  }
+  .event-card-image {
+    width: auto;
+  }
+  .module-header--desktop, .module-header--flyout {
+    border-bottom: 1px solid $alto;
+    clear: both;
+    display: inline-block;
+    margin: 0 0 5px;
+    padding-bottom: 6px;
+    padding-top: 0;
+  }
+  .module-header--mobile {
+    display: none;
+  }
+  .module-header--note {
+    border-bottom: none;
+    display: inline-block;
+  }
+  .module-header--dropdown {
+    display: none;
+  }
+  .event-dropdown-info {
+    height: auto;
+    margin-top: 25px;
+    max-height: none;
+  }
+  .event-note__note-text {
+    padding-top: 0;
+  }
+  .placeholder-background {
+    background: none;
+    filter: none;
+  }
+  .rsvp-info {
+    bottom: 0;
+    left: 0;
+    margin: 0px auto 20px;
+    position: relative;
+    text-align: center;
+    .rsvp-info__background-border {
+      background-color: $alto;
+      width: 100%;
+    }
+    .rsvp-info__info-button {
+      left: -50px;
+    }
+  }
+  .tab.rsvp-info {
+    display: none;
+  }
+  .new-event-page-content {
+    .guest-book-and-form {
+      float: none;
+      margin: 25px auto 0;
+      width: 75%;
+    }
+  }
+  .comment-container__comment {
+    float: left;
+    width: 33%;
+  }
+  .event-guests {
+    float: none;
+    margin: 0 auto;
+    max-width: 730px;
+    padding-left: 12px;
+    text-align: center;
+    width: 100%;
+  }
+  .guest-list {
+    margin-bottom: 50px;
+  }
+  .guest-list__guest {
+    float: left;
+    width: 32%;
+  }
+  .attendance-header {
+    display: block;
+    margin-top: 50px;
+  }
+  .event-guests__container {
+    display: block;
+    float: left;
+    height: auto;
+    left: 0;
+    margin-top: 25px;
+    overflow: auto;
+    position: relative;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+    @include transition(none);
+  }
+  .event-photos-module--full__background-image {
+    height: 336px;
+    width: 50%;
+  }
+  .comment-form {
+    border: 1px solid $driftwood;
+    float: right;
+    padding: 10px;
+    width: 100%;
+  }
+  .comment-form--nested {
+    border: none;
+    border-top: 1px solid $alto;
+    padding: 10px 0px;
+  }
+  .masonry-note-item {
+    border: none;
+  }
+  .comment-container__comment--placeholder .placeholder-content {
+    left: 0%;
+  }
+  
+  .comment-container__comment .delete-comment {
+    height: 20px;
+    width: 20px;
+  }
+
+  .event-photos-module--empty {
+    display: block;
+  }
+
+  .comment-form__add-photo {
+    display: none;
+  }
+
+  .camera-svg--fallback {
+    @extend %fallback;
+    background: url(/images/event_page/fallbacks/camera.png) center no-repeat;
+    height: 20px;
+    margin-right: 3px;
+    top: 3px;
+    width: 20px;
+  }
+
+  .hermes-svg-fallback {
+    @extend %fallback;
+    background: url(/images/event_page/fallbacks/hermes.png) center no-repeat;
+    height: 30px;
+    width: 30px;
+  }
+
+  .close-x-svg-fallback {
+    @extend %fallback;
+    background: url(/images/event_page/fallbacks/light-x.png) center no-repeat;
+    height: 20px;
+    position: absolute;
+    right: 2px;
+    top: 0px;
+    width: 20px;
+  }
+
+  .messages-svg-fallback {
+    @extend %fallback;
+    background: url(/images/event_page/fallbacks/messages.png) center no-repeat;
+    height: 12px;
+    margin-right: 5px;
+    width: 12px;
+  }
+
+  .heart-svg--fallback, .heart-filled-svg--fallback {
+    @extend %fallback;
+    background: url(/images/event_page/fallbacks/heart.png) center no-repeat;
+    height: 16px;
+    margin-right: 4px;
+    top: 2px;
+    width: 16px;
+  }
+  .heart-filled-svg--fallback {
+    background: url(/images/event_page/fallbacks/heart-filled.png) center no-repeat;
+  }
+
+  .heart-svg--fallback-small {
+    @extend .heart-svg--fallback;
+    background: url(/images/event_page/fallbacks/heart-grey-small.png) center no-repeat;
+    height: 12px;
+    width: 12px;
+  }
+
+  .arrow-right--fallback {
+    @extend %fallback;
+    background: url(/images/event_page/fallbacks/arrow-right.png) center no-repeat;
+    float: right;
+    height: 12px;
+    width: 12px;
+    svg {
+      top: 0;
+    }
+  }
+  .holiday-cta {
+    display: block;
+  }
+  .full-width-header {
+    display: none;
+  }
+}

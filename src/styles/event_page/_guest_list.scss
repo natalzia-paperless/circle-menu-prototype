@@ -1,0 +1,283 @@
+.event-guests {
+  width: 100%;
+  @include breakpoint($fullscreen) {
+    float: left;
+    margin: 0 auto;
+    max-width: 230px;
+    width: 25%;
+  }
+}
+
+.preview-guest-list {
+  color: $boulder;
+  font-size: 14px;
+  margin: 20px 0 25px;
+}
+
+.guest-list__protected {
+  margin-bottom: 50px;
+}
+
+.guest-list {
+  padding-bottom: 50px;
+  position: relative;
+  text-align: left;
+  @include breakpoint($fullscreen) {
+    padding-bottom: 0px;
+  }
+}
+
+.guest-list__guest {
+  font-size: 18px;
+  line-height: 20px;
+  margin: 5px 0 0;
+  position: relative;
+  width: 100%;
+  @include breakpoint($fullscreen) {
+    position: relative;
+    &.current-guest {
+      padding-left: 0;
+    }
+  }
+  svg {
+    display: none;
+    fill: $driftwood;
+    height: 14px;
+    position: absolute;
+    right: -15px;
+    top: 4px;
+    width: 14px;
+  }
+}
+
+.guest-list__guest-name {
+  display: inline-block;
+  left: -2px;
+  margin: 0 5px 0 0;
+  overflow: hidden;
+  padding-left: 2px;
+  position: relative;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+li.see-more-guests {
+  color: $driftwood;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.see-more-guests--full-width {
+  @extend li.see-more-guests;
+  display: none;
+  margin: 12px 10px 0 0;
+  border-bottom: 1px solid transparent;
+  &:hover {
+    border-color: $driftwood;
+  }
+}
+
+.guest-list-container {
+  padding: 10px 20px 20px;
+  -webkit-transform: translateZ(0);
+  @include breakpoint($fullscreen) {
+    padding: 0
+  }
+}
+
+.mobile-guest-close {
+  cursor: pointer;
+  left: 10px;
+  position: absolute;
+  top: 12px;
+  width: 20px;
+  @include breakpoint($fullscreen) {
+    display: none;
+  }
+  svg {
+    width: 100%;
+  }
+}
+
+.event-guests__container {
+  background-color: $white;
+  height: 100%;
+  left: -100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  top: 48px;
+  width: 100%;
+  z-index: 100;
+  @include transition(left .5s ease);
+  @include breakpoint($fullscreen) {
+    display: block;
+    float: left;
+    height: auto;
+    left: 0;
+    overflow: visible;
+    position: relative;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+    @include transition(none);
+  }
+  &.active {
+    left: 0%;
+    @include transition(left .5s ease);
+  }
+  &.list-only {
+    left: 0;
+    position: relative;
+    top: 0px;
+    z-index: 0;
+    @include transition(none);
+    .mobile-guest-close {
+      display: none;
+    }
+    .module-header--flyout {
+      padding-left: 20px;
+      text-align: left;
+    }
+    .guest-list:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+li.attendance-header {
+  font-size: 14px;
+  margin: 30px 0 14px;
+  &:first-child {
+    margin-top: 10px;
+  }
+}
+
+.guest-list__rsvp-status {
+  color: $boulder;
+  display: none;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  @include breakpoint($fullscreen) {
+    display: block;
+  }
+}
+
+.guest-list__rsvp-status--gold {
+  @extend .guest-list__rsvp-status;
+  color: $driftwood;
+}
+
+.grouped-hide {
+  display: none;
+}
+
+.full-width-header {
+  display: none;
+}
+
+.guest-list__name-container {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  &:hover {
+    svg {
+      display: inline;
+    }
+  }
+}
+
+.guest-count--full-width {
+  display: none;
+}
+
+.full-width {
+  @include breakpoint($fullscreen) {
+    float: none;
+    max-width: 730px;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    .guest-list-container {
+      margin: 10px 0 50px 0;
+      padding: 0 12px 0 16px;
+    }
+    .event-guests__container {
+      top: 0;
+      .module-header--flyout {
+        padding-left: 0px;
+      }
+    }
+    .guest-list__guest {
+      float: left;
+      margin-bottom: 12px;
+      padding: 0 10px;
+      text-align: center;
+      width: 33%;
+      svg {
+        bottom: 10px;
+        top: auto;
+      }
+    }
+    .guest-list__guest-name {
+      margin: 0 10px 0 0;
+    }
+    .full-width-header {
+      cursor: pointer;
+      display: inline-block;
+      span {
+        margin-right: 5px;
+      }
+    }
+    .module-header--flyout {
+      display: none;
+      &.only-header {
+        display: inline-block;
+      }
+    }
+    .grouped-hide {
+      display: block;
+    }
+    .full-width-hide {
+      display: none;
+    }
+    .see-more-guests {
+      display: none;
+    }
+    .see-more-guests--full-width {
+      display: inline-block;
+    }
+    .attendance-header {
+      display: none;
+    }
+    .full-width-dropdown {
+      background-color: $white;
+      border: 1px solid $alto;
+      cursor: default;
+      display: none;
+      left: 50%;
+      line-height: 26px;
+      padding: 10px;
+      position: absolute;
+      top: 24px;
+      z-index: 101;
+      @include box-shadow(1px 1px 2px 0px transparentize($charcoal, .85));
+      @include transform(translateX(-50%));
+      &.is-active {
+        display: block;
+      }
+      li {
+        font-size: 14px;
+      }
+    }
+    .guest-count--full-width {
+      display: inline;
+    }
+  }
+}

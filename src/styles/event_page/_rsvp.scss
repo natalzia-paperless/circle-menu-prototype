@@ -1,0 +1,428 @@
+//RSVP modal styles
+.rsvp-modal {
+  background-color: $white;
+  left: 0;
+  min-height: 100%;
+  padding-top: 35px;
+  position: relative;
+  top: 0px;
+  width: 100%;
+  z-index: 3102;
+  @include font-smoothing(antialiased);
+  @include breakpoint($fullscreen) {
+    margin: 0 auto 70px;
+    min-height: 0;
+    padding: 70px;
+    overflow-y: hidden;
+    top: 70px;
+    width: 590px;
+    @include border-radius(3px);
+  }
+  .modal-close {
+    cursor: pointer;
+    height: 18px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 18px;
+    @include breakpoint($fullscreen) {
+      right: 24px;
+      top: 24px;
+    }
+  }
+  .close-menu {
+    display: none;
+  }
+  .edit-menu {
+    display: block;
+  }
+  &.form-active {
+    .close-menu {
+      display: block;
+    }
+    .edit-menu {
+      display: none;
+    }
+    .rsvp-answer__form {
+      display: block;
+    }
+    .rsvp-answer__info {
+      display: none;
+    }
+    .rsvp-answer {
+      text-align: left;
+    }
+    .guest-info-form {
+      border-bottom: none;
+    }
+  }
+  &.confirmation-message {
+    position: relative;
+    @include breakpoint($fullscreen) {
+      padding-top: 70px;
+      top: 100px;
+    }
+  }
+}
+.rsvp-header {
+  @include clearfix;
+}
+.rsvp-footer {
+  padding: 25px 0 0;
+  text-align: center;
+  @include breakpoint($fullscreen) {
+    margin: 25px 0 0;
+  }
+  .button:nth-child(2n) {
+    margin-left: 10px;
+  }
+}
+.rsvp-modal__menu {
+  .action {
+    cursor: pointer;
+    font-size: 22px;
+    padding: 10px 12px;
+  }
+  .action--right {
+    @extend .action;
+    float: right;
+    svg {
+      height: 18px;
+      width: 18px;
+    }
+  }
+}
+.rsvp-answer {
+  margin-bottom: 25px;
+  text-align: center;
+  -webkit-transform: translateZ(0);
+  &:last-child {
+    margin-bottom: 15px;
+  }
+}
+.rsvp-answer--short-form-margin {
+  @extend .rsvp-answer;
+}
+.rsvp-answer__header {
+  color: $boulder;
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding: 0 15px;
+  @include breakpoint($fullscreen) {
+    font-size: 16px;
+  }
+}
+.rsvp-answer__info {
+  display: block;
+  font-size: 16px;
+  padding: 0 15px;
+  @include breakpoint($fullscreen) {
+    font-size: 14px;
+  }
+}
+.rsvp-answer__header--mobile {
+  @extend .rsvp-answer__header;
+}
+.rsvp-answer__form, .additional-question__form {
+  color: $charcoal;
+  display: none;
+  position: relative;
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  select {
+    background-color: $white;
+    border: none;
+    border-top: 1px solid $alto;
+    font-family: "Helvetica Neue Light", Helvetica, Arial, sans-serif; //in place until fonts situation is figured out
+    font-size: 16px;
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+    @include appearance(none);
+    @include border-radius(0px);
+    @include breakpoint($fullscreen) {
+      font-size: 14px;
+    }
+    &::-ms-clear {
+      display: none;
+    }
+    &.half-width {
+      float: left;
+      width: 50%;
+      &:nth-child(2n+1) {
+        border-right: 1px solid $alto;
+      }
+    }
+    &.bottom-input-item {
+      border-bottom: 1px solid $alto;
+    }
+    &.additional-question-input {
+      padding: 15px 34px 15px 15px;
+    }
+    &.name-input, &.email-input {
+      border: none;
+      color: $mine-shaft;
+      padding: 1px;
+      text-align: center;
+      text-overflow: ellipsis;
+      &:hover {
+        border: 1px solid $alto;
+        padding: 0;
+      }
+    }
+    &.name-input {
+      color: $charcoal;
+      font-family: "Adobe Garamond Italic", Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+  }
+  .attending-total {
+    display: inline;
+    position: relative;
+  }
+  .additional-guest-select {
+    background: transparent;
+    border: none;
+    color: $driftwood;
+    cursor: pointer;
+    display: inline;
+    float: none;
+    max-width: 34px;
+    padding: 0 15px 0 0;
+    position: relative;
+    width: auto;
+    z-index: 2;
+    @include breakpoint($fullscreen) {
+      //firefox appearance fix
+      -moz-appearance: tabpanels;
+    }
+    // separate breakpoint to not need to override desktop styles
+    @include breakpoint(max-width $fullscreen) {
+      //fix for select items not showing in android
+      -webkit-appearance: listitem;
+    }
+    &::-ms-expand {
+        display: none;
+    }
+  }
+  .additional-select-container {
+    position: relative;
+    top: 2px;
+    &::after {
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid $driftwood;
+      content: "";
+      display: inline-block;
+      height: 0;
+      margin-left: -13px;
+      position: relative;
+      top: -1px;
+      width: 0;
+    }
+  }
+
+}
+
+.rsvp-answer__form--name {
+  @extend .rsvp-answer__form;
+  text-align: center;
+}
+
+.additional-question {
+  font-size: 20px;
+  margin-bottom: 5px;
+  padding: 0 15px;
+  @include breakpoint($fullscreen) {
+    font-size: 16px;
+  }
+}
+.additional-question__answer {
+  font-size: 20px;
+  padding: 0 15px;
+  @include breakpoint($fullscreen) {
+    font-size: 14px;
+  }
+}
+
+.attending-check {
+  padding: 0 12px 0 15px;
+  @include breakpoint($fullscreen) {
+    float: left;
+    width: 52%;
+    &.field--radio {
+      margin-top: 0;
+    }
+    &:last-child {
+      width: 48%;
+      padding: 0 10px 0 5px;
+    }
+  }
+  .field--radio__button {
+    vertical-align: top;
+  }
+  .field--radio__label {
+    display: inline;
+    font-size: 16px;
+    text-transform: none;
+    @include breakpoint($fullscreen) {
+      font-size: 14px;
+      &.will-not-attend-label {
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+}
+
+.rsvp-info {
+  bottom: 30px;
+  left: 50%;
+  min-height: 1px;
+  position: fixed;
+  z-index: 100;
+  @include transform(translateX(-50%));
+  @include breakpoint($fullscreen) {
+    bottom: 0;
+    position: relative;
+    text-align: center;
+    .rsvp-info__background-border {
+      height: 1px;
+      margin: -70px auto 20px;
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      z-index: -1;
+      @include border-gradient(left, 0, $alto, 15%, 85%);
+    }
+    .rsvp-info__background-border--no-button {
+      //@extend .rsvp-info__background-border;
+      top: 20px;
+    }
+  }
+  &.mobile-hide {
+    display: none;
+    @include breakpoint($fullscreen) {
+      display: block;
+    }
+  }
+  .rsvp-info__info-button {
+    border: 2px solid transparentize($white, .9);
+    color: $white;
+    cursor: pointer;
+    height: auto;
+    position: relative;
+    @include border-radius(25px);
+    @include prefix(box-shadow, 0px 0px 2px 0px rgba(0, 0, 0, 0.4));
+    @include breakpoint($fullscreen) {
+      border: none;
+      margin: -95px 0 20px;
+      @include prefix(box-shadow,none);
+    }
+  }
+  .rsvp-info__info-button--empty { 
+    @extend .rsvp-info__info-button;
+    @include breakpoint(787px) {
+      margin: 50px 0 20px;
+    }
+  }
+  .rsvp-info__items-left {
+    background-clip: padding-box;
+    background-color: $driftwood;
+    box-sizing: content-box;
+    border: 2px solid transparentize($white, .9);
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    width: 22px;
+    @include border-radius(100%);
+    @include breakpoint($fullscreen) {
+      border: none;
+      @include prefix(box-shadow,none);
+    }
+  }
+}
+
+.number-attending {
+  color: $driftwood;
+}
+
+.delete-additional-answer {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 16px;
+  width: 10px;
+  &.on {
+    display: block;
+  }
+  svg {
+    width: 100%;
+  }
+}
+
+.rsvp-footer__save-button {
+  width: 98px;
+}
+
+.rsvp-modal__request-header {
+  color: $charcoal;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.additional-question-header.rsvp-answer__header--mobile {
+  color: $charcoal;
+}
+
+.guest-info-form {
+  @include breakpoint($fullscreen) {
+    margin: 0 auto;
+  }
+}
+
+.rsvp-modal-notification {
+  background-color: #eff8f1;
+  color: #56baa0;
+  font-size: 14px;
+  margin: 0 auto;
+  padding: 10px 15px;
+  position: relative;
+  text-align: center;
+  top: 0px;
+  width: 100%;
+  z-index: 3103;
+  @include breakpoint($fullscreen) {
+    left: 50%;
+    position: absolute;
+    top: 20px;
+    width: 590px;
+    @include transform(translateX(-50%));
+  }
+}
+
+//override global error to make it pop above the reply modal
+#global-error {
+  z-index: 3202;
+}
+
+// Makes select inputs behave in firefox/ie like they do in chrome
+.state-input {
+  @include breakpoint($fullscreen) {
+    height: 48px;
+  }
+}
+
+.country-input {
+  @include breakpoint($fullscreen) {
+    height: 49px;
+  }
+}

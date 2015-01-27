@@ -1,0 +1,141 @@
+.comment-form {
+  background: transparentize($driftwood, .99);
+  border-top: 1px solid $driftwood;
+  border-bottom: 1px solid $driftwood;
+  margin: 10px 0 20px;
+  padding: 10px 0;
+  position: relative;
+  text-align: right;
+  @include breakpoint($fullscreen) {
+    border: 1px solid $driftwood;
+    float: right;
+    padding: 10px;
+    width: 100%;
+  }
+  .comment-form__add-photo {
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    padding: 0 18px;
+    svg {
+      fill: $driftwood;
+      height: 20px;
+      margin-right: 5px;
+      position: relative;
+      top: 3px;
+      width: 20px;
+    }
+  }
+  .comment-form__add-note {
+    font-size: 16px;
+    padding: 0 18px;
+  }
+  .arrow-down--light-gold {
+    bottom: 10px;
+  }
+}
+
+.new-event-page-content .image-preview {
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px auto 0;
+  position: relative;
+  text-align: left;
+  @include breakpoint($fullscreen) {
+    margin: 10px 0 0;
+  }
+
+  img {
+    border: 1px solid $alto;
+    height: 50px;
+    width: auto;
+  }
+
+  &.is-active, &.loading {
+    .image-preview__delete {
+      display: block;
+    }
+  }
+
+  .image-preview__delete {
+    background-color: $driftwood;
+    display: none;
+    height: 20px;
+    position: absolute;
+    right: -10px;
+    text-align: center;
+    top: -10px;
+    width: 20px;
+    z-index: 2;
+    @include border-radius(50%);
+    svg {
+      fill: $white;
+      margin: 0 auto;
+      width: 8px;
+    }
+  }
+}
+
+.comment-form--nested {
+  @extend .comment-form;
+  background: $white;
+  border: none;
+  border-top: 1px solid $alto;
+  height: auto;
+  margin: 0;
+  padding: 10px 0 5px;
+  @include breakpoint($fullscreen) {
+    padding: 0;
+    &:hover {
+      border: 1px solid $driftwood;
+      .arrow-up--grey::before {
+        border-color: transparent transparent $driftwood transparent;
+      }
+      .comment-form__field--nested {
+        padding: 14px 14px 4px;
+      }
+    }
+  }
+  .arrow-up--grey {
+    top: -24px;
+  }
+}
+
+.comment-form__field {
+  background: $white;
+  border: none;
+  font-family: "Adobe Garamond Italic";
+  font-size: 16px;
+  height: 34px;
+  margin: 0;
+  padding: 10px 0 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.comment-form__field--nested {
+  @extend .comment-form__field;
+  height: 30px;
+  padding: 6px 20px 0;
+  width: 100%;
+  @include breakpoint($fullscreen) {
+    height: 40px;
+    padding: 14px 15px 5px;
+    width: 100%;
+  }
+}
+
+.comment-form__actions {
+  padding-top: 10px;
+  text-align: center;
+  @include breakpoint($fullscreen) {
+    text-align: right;
+  }
+}
+
+.comment-form__input {
+  background: $white;
+  border: 1px solid transparentize($driftwood, .75);
+  padding: 10px;
+  text-align: left;
+}

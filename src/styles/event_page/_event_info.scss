@@ -1,0 +1,274 @@
+.registry-link {
+  display: inline-block;
+}
+.event-details-content {
+  padding: 40px 0 0;
+  @include breakpoint($fullscreen) {
+    padding: 50px 0;
+  }
+}
+
+.event-details-content--empty {
+  margin: 0 auto;
+  max-width: 730px;
+  padding: 40px 0;
+  position: relative;
+  text-align: center;
+  @extend .event-details-content;
+  @include breakpoint(787px) {
+    padding: 50px 0 200px;
+  }
+  .event-note__note-text {
+    padding: 0 10px;
+  }
+  .event-calendar-dropdown {
+    text-align: left;
+  }
+  .module-header--desktop {
+    display: block;
+    text-align: center;
+  }
+}
+.event-details {
+  margin: 0 auto;
+  max-width: 730px;
+}
+
+.event-location__time {
+  display: block;
+  position: relative;
+  &:last-child {
+    margin-bottom: 12px;
+  }
+}
+
+.event-calendar-dropdown {
+  background-color: $white;
+  border: 1px solid $alto;
+  cursor: default;
+  display: none;
+  left: -12px;
+  line-height: 26px;
+  max-width: 250px;
+  padding: 10px;
+  position: absolute;
+  top: 24px;
+  width: 140px;
+  z-index: 101;
+  @include box-shadow(1px 1px 2px 0px transparentize($charcoal, .85));
+}
+
+.event-page {
+  background-color: $white;
+}
+
+.event-card-image {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+  img {
+    display: block;
+    max-width: 179px;
+    position: relative;
+    top: 4px;
+    width: 100%;
+  }
+}
+
+.event-card-image--empty {
+  margin: 0 auto;
+  max-width: 180px;
+  position: relative;
+  width: 90%;
+  img {
+    width: 100%;
+  }
+  &:hover {
+    .view-card-cta {
+      //display: block;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+    }
+  }
+}
+
+.event-desc {
+  float: right;
+  font-size: 22px;
+  width: 66%;
+}
+
+.event-desc__title {
+  color: $mine-shaft;
+  font-size: 24px;
+}
+
+.event-desc__title--empty {
+  @extend .event-desc__title;
+  padding: 10px 0 50px;
+}
+
+.event-desc__host {
+  font-size: 14px;
+  padding: 8px 0;
+  svg {
+    fill: $driftwood;
+    left: 3px;
+    position: relative;
+    top: 5px;
+    width: 12px;
+  }
+}
+
+.event-desc__host--empty {
+  @extend .event-desc__host;
+  padding: 8px 0 12px;
+}
+
+.event-desc__actions {
+  font-size: 14px;
+  .dropdown-arrow {
+    border-color: transparent;
+    border-top-color: $driftwood;
+    border-width: 4px;
+  }
+  .event-action {
+    padding: 0 10px 0 0;
+    &:last-child {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+  .add-to-calendar {
+    display: inline-block;
+    position: relative;
+    &.is-active {
+      .event-calendar-dropdown {
+        display: block;
+      }
+    }
+    @include breakpoint($fullscreen) {
+      padding-bottom: 12px;
+    }
+  }
+  span {
+    color: $alto;
+  }
+}
+
+.event-location {
+  font-size: 14px;
+  line-height: 20px;
+  position: relative;
+}
+
+.event-dropdown-info {
+  float: right;
+  margin-top: 0px;
+  max-height: 0px;
+  overflow: hidden;
+  position: relative;
+  width: 66%;
+  @include transition(max-height .5s);
+  @include breakpoint($fullscreen) {
+    height: auto;
+    max-height: none;
+  }
+  &.is-active {
+    max-height: 700px;
+    @include transition(max-height .5s);
+  }
+}
+
+.event-note {
+  margin-bottom: 5px;
+  &.is-active {
+    margin: -20px 0 0;
+    @include breakpoint($fullscreen) {
+      margin: 0;
+    }
+  }
+}
+
+.event-note__registry-body {
+  font-size: 16px;
+  a {
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  @include breakpoint($fullscreen) {
+    padding: 0;
+  }
+}
+
+.event-note__note-body {
+  font-size: 14px;
+  margin: 0 auto;
+  max-width: 475px;
+}
+
+.event-note__note-text {
+  font-size: 16px;
+  line-height: 22px;
+  overflow: hidden;
+  padding: 10px 0;
+  position: relative;
+  @include breakpoint($fullscreen) {
+    padding: 0;
+  }
+  &.truncated {
+    .truncated-note {
+      display: block;
+      p:last-child::after {
+        border: solid transparent;
+        border-top-color: $driftwood;
+        border-width: 4px;
+        bottom: -14px;
+        content: " ";
+        height: 0;
+        position: relative;
+        pointer-events: none;
+        right: -2px;
+        width: 0;
+      }
+    }
+    .not-truncated-note {
+      display: none;
+    }
+  }
+  &.can-be-truncated {
+    cursor: pointer;
+  }
+  // Needs to be overrided without a class because the back-end
+  //  automatically inserts the link and paragraph tags into the markup the view recieves
+  //  related code: https://github.com/paperlesspost/paperless-post/blob/master/app/helpers/events_helper.rb#L45
+  a, a:hover, a:link {
+    color: $driftwood;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  .truncated-note {
+    display: none;
+  }
+}
+
+.view-card-cta {
+  display: none;
+}
+
+@include breakpoint($fullscreen) {
+  .event-note, .event-registry {
+    clear: none;
+    display: block;
+    float: right;
+    height: auto;
+    margin-top: 5px;
+    width: 100%;
+  }
+}

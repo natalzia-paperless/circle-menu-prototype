@@ -1,0 +1,696 @@
+@import "compass/css3/";
+@import "compass";
+
+$fullscreen: 787px;
+
+//START Previous Color Variables
+
+$light_green: #6c9f00;
+$bright_green: #008e1d;
+$dark_green: #173d09;
+$light_gray: #edede9;
+$pp-red: #7a1026;
+
+.red {
+  color: $pp-red !important;
+}
+
+// 2014 Color Palette
+
+$white: #ffffff;
+$gallery: #eeeeee;
+$alto: #dddddd;
+$silver: #bbbbbb;
+$driftwood: #a38546;
+$boulder: #777777;
+$emperor: #555555;
+$mine-shaft: #333333;
+$charcoal: #111111;
+$black: #000000;
+$tucson-sunset: #ff0000;
+$alabaster: #f6f6f6;
+
+$donut-pink: #ffeded;
+$donut-red: #fe875e;
+$bahama-blue: #006699;
+$facebook-blue: #3B5998;
+
+$surge: #e7f6e6;
+$seafoam-teal: #56baa0;
+$japanese-laurel: #06a000;
+
+// Shadow, Gradient, Border Radius
+
+@mixin breakpoint($px) {
+  @media (min-width $px) {
+    @content;
+  }
+}
+
+@mixin clearfix {
+  clear: both;
+  *zoom: 1;
+
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+// Absolute centering, works only if height is provided and
+// Parent has position: absolute; or position: relative;
+@mixin center_me($height: auto) {
+  bottom: 0px;
+  height: $height;
+  left: 0px;
+  margin: auto;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+@mixin gradient($start, $end) {
+  background: $start;
+  background: $start -webkit-gradient(linear, 0% 0%, 0% 100%, from($start), to($end));
+  background: $start -moz-linear-gradient(0% 100% 90deg, $end, $start);
+}
+
+@mixin horiz-gradient($start, $end) {
+  background: $start; /* Old browsers */
+  background: -moz-linear-gradient(left, $start 0%, $end 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, $start), color-stop(100%,$end)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, $start 0%, $end 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, $start 0%, $end 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, $start 0%, $end 100%); /* IE10+ */
+  background: linear-gradient(to right, $start 0%, $end 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start', endColorstr='#f0e8e3', GradientType=1 ); /* IE6-9 */
+}
+
+@mixin shifted-horiz-gradient($start, $end, $shift) {
+  background: $start; /* Old browsers */
+  background: -moz-linear-gradient(left, $start $shift, $end 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop($shift, $start), color-stop(100%,$end)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, $start $shift, $end 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, $start $shift, $end 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, $start $shift, $end 100%); /* IE10+ */
+  background: linear-gradient(to right, $start $shift, $end 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start', endColorstr='#f0e8e3', GradientType=1 ); /* IE6-9 */
+}
+
+@mixin horiz-center-gradient($start, $middle, $end) {
+  background: $middle;
+  background: $middle -webkit-gradient(linear, left top, right top, color-stop(0%, $start), color-stop(40%, $middle), color-stop(60%, $middle), color-stop(100%, $end));
+  background: $middle -moz-linear-gradient(left, $start 0%, $middle 40%, $middle 60%, $end 100%);
+}
+
+@mixin vertical-gradient($start, $middle, $end, $offset: 50%) {
+  background: -moz-linear-gradient(top,  $start 0%, $middle $offset, $end 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $start), color-stop($offset, $middle), color-stop(100%, $end)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  $start 0%, $middle $offset, $end 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  $start 0%, $middle $offset, $end 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  $start 0%, $middle $offset, $end 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  $start 0%, $middle $offset, $end 100%); /* W3C */
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin border-radius-top($radius) {
+  @include border-radius-top-left($radius);
+  @include border-radius-top-right($radius);
+}
+
+@mixin border-radius-right($radius) {
+  @include border-radius-top-right($radius);
+  @include border-radius-bottom-right($radius);
+}
+
+@mixin border-radius-bottom($radius) {
+  @include border-radius-bottom-left($radius);
+  @include border-radius-bottom-right($radius);
+}
+
+@mixin border-radius-left($radius) {
+  @include border-radius-top-left($radius);
+  @include border-radius-bottom-left($radius);
+}
+
+@mixin border-radius-top-left($radius) {
+  -webkit-border-top-left-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  border-top-left-radius: $radius;
+}
+
+@mixin border-radius-top-right($radius) {
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-radius-topright: $radius;
+  border-top-right-radius: $radius;
+}
+
+@mixin border-radius-bottom-left($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  -moz-border-radius-bottomleft: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+@mixin border-radius-bottom-right($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  -moz-border-radius-bottomright: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+@mixin appearance($setting) {
+  -webkit-appearance: $setting;
+  -moz-appearance: $setting;
+  appearance: $setting;
+}
+
+@mixin user-select($setting) {
+  -webkit-user-select: $setting;
+  -moz-user-select: $setting;
+  user-select: $setting;
+}
+
+@mixin opacity($option) {
+  $option_ie: round($option * 100);
+  -moz-opacity: $option;
+  -khtml-opacity: $option;
+  opacity: $option;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$option_ie})";
+  filter: alpha(opacity = $option_ie);
+}
+
+@mixin ellipsis-overflow($width) {
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin border-gradient ($direction, $start_opacity, $start_iecolor, $stop2, $stop3) {
+  background-image: -ms-linear-gradient($direction, $start_iecolor 0%, $alto $stop2, $alto $stop3, white 100%);
+  @include background-image(linear-gradient($direction, rgba(221, 221, 221, $start_opacity) 0%, $alto $stop2, $alto $stop3, rgba(255, 255, 255, 0) 100%));
+}
+
+@mixin transparent-border-gradient ($direction, $start_opacity, $start_iecolor, $stop2, $stop3) {
+  background: -ms-linear-gradient($direction, $start_iecolor 0%, $alto $stop2, $alto $stop3, white 100%);
+  @include background(linear-gradient($direction, rgba(221, 221, 221, $start_opacity) 0%, $alto $stop2, $alto $stop3, rgba(255, 255, 255, 0) 100%));
+}
+
+@mixin font-smoothing($setting) {
+  -webkit-font-smoothing: $setting;
+  font-smoothing: $setting;
+  @if $setting == antialiased {
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @else {
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+// $transitionClass assigns the class `transitions` to the transition properties.
+// This is useful if you need to reanimate by removing/adding the transition properites.
+@mixin fader($duration: 1000ms, $func: ease-in, $transitionClass: false) {
+  opacity: 0;
+  @if $transitionClass {
+    &.transitions {
+      @include transition(opacity $duration $func);
+    }
+  } @else {
+    @include transition(opacity $duration $func);
+  }
+  &.fade-in {
+    opacity: 1;
+  }
+}
+
+@mixin placeholder-fade ($color) {
+  // Placeholder styles
+  ::-webkit-input-placeholder {
+    color: $color;
+    opacity: 1;
+    -webkit-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
+  }
+  :-moz-placeholder {
+    color: $color;
+    opacity: 1;
+    -moz-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
+  }
+  ::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+    -moz-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
+  }
+  :-ms-input-placeholder {
+    color: $color;
+    opacity: 1;
+    -ms-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
+  }
+
+  // Placeholder styles for focus
+  :focus::-webkit-input-placeholder {
+    opacity: 0;
+    -webkit-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
+  }
+  :focus:-moz-placeholder {
+    opacity: 0;
+    -moz-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
+  }
+  :focus::-moz-placeholder {
+    opacity: 0;
+    -moz-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
+  }
+  :focus:-ms-input-placeholder {
+    opacity: 0;
+    -ms-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
+  }
+}
+
+@mixin prefix ($prop, $val) {
+  @each $pre in -webkit-, -moz-, -ms-, -o- {
+    #{$pre}#{$prop}: #{$val};
+  }
+  #{$prop}: #{$val};
+}
+
+// Input placeholder from github.com/michaelsacca/Compass-Placeholder-Text-Mixin
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+/* Keyframe mixin from https://gist.github.com/ericam/1607696 */
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+// This close-x mixin produces an equilateral x using CSS3.
+// Requires three parameters ($color, $size, $thickness) for maximum customization.
+// Incorporates Compass' transform mixin
+// Last updated June 2014
+
+@mixin close-x($color, $size, $thickness) {
+  cursor: pointer;
+  display: inline-block;
+  height: $size;
+  width: $size;
+  &:before {
+    background: $color !important;
+    content: '';
+    height: $thickness;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    @include transform(rotate(45deg));
+  }
+
+  &:after {
+    background: $color !important;
+    content: '';
+    height: $thickness;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    @include transform(rotate(-45deg));
+  }
+}
+
+// This add-plus mixin produces an "+" using CSS3.
+// Requires three parameters ($color, $size, $thickness) for maximum customization.
+// Incorporates Compass' transform mixin
+// Last updated June 2014
+
+@mixin add-plus($color, $size, $thickness) {
+  cursor: pointer;
+  display: inline-block;
+  height: $size;
+  position: absolute;
+  width: $size;
+
+  &:before {
+    background: $color !important;
+    content: '';
+    height: $thickness;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    @include transform(rotate(90deg));
+  }
+
+  &:after {
+    background: $color !important;
+    content: '';
+    height: $thickness;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+  }
+}
+
+@mixin custom-checkbox-gold($float: left, $size: 14px) {
+  input[type=checkbox], input[type=radio] {
+    display: none;
+  }
+  input[type=checkbox]:checked + label:before, input[type=radio]:checked + label:before {
+    content: url('/images/svgs/checkmark.svg');
+    color: $charcoal;
+    float: $float;
+    height: $size;
+    line-height: 3px;
+    padding: 2px;
+    text-align: center;
+    width: $size;
+  }
+  input[type=checkbox]:disabled + label:before {
+    border: 1px solid $alto;
+  }
+  label:before {
+    border: 1px solid $driftwood;
+    content: "";
+    display: inline-block;
+    float: $float;
+    height: $size;
+    margin-right: 8px;
+    width: $size;
+    @include border-radius(3px);
+  }
+}
+
+@mixin calc($prop, $val) {
+  @each $pre in -webkit-, -moz-, -ms- {
+    #{$prop}: $pre + calc(#{$val});
+  }
+  #{$prop}: calc(#{$val});
+}
+
+// Custom scrollbar mixin for webkit browsers
+
+@mixin scrollbar($primary, $secondary) {
+  &::-webkit-scrollbar {
+    width: 3px;
+    @include appearance(none);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $primary;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $secondary;
+  }
+}
+
+// Mixin to center something. Works even when:
+// 1. You don't know know how big it is
+// 2. You don't know how big the container is
+//
+// NOTE: parent must be position: relative;
+@mixin centerer {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centerer {
+  @include centerer;
+}
+
+// used to restrict scrolling when modal is open, specific to override calc definitions
+.overflow--hide, .has_sub_nav.overflow--hide, .nav-visible.overflow--hide {
+  height: 100%;
+  overflow: hidden;
+}
+
+@mixin flicker_fix {
+  @include prefix(backface-visibility, hidden);
+  @include prefix(perspective, 1000);
+}
+
+
+
+// Module styles
+@import "rsvp";
+@import "photos_module";
+@import "event_info";
+@import "headers";
+@import "guest_list";
+@import "pinned_note";
+@import "comment_form";
+@import "comment_container";
+@import "icons";
+@import "arrows";
+@import "ie";
+
+// General Styles
+.new-event-page-content {
+  min-height: 100%;
+  &.preview {
+    margin-top: -49px;
+  }
+  * {
+    @include font-smoothing(antialiased);
+  }
+  .link, .link:hover {
+    color: $driftwood;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .link--white, .link--white:hover {
+    @extend .link;
+    color: $white;
+  }
+  .link--mine-shaft, .link--mine-shaft:hover {
+    @extend .link;
+    color: $mine-shaft;
+  }
+
+  .link--hover-change:hover {
+    color: $driftwood;
+  }
+
+  svg {
+    //Fix for Safari SVG bug
+    max-height: 100%;
+  }
+  .clear-desktop {
+    clear: none;
+    @include breakpoint($fullscreen) {
+      clear: both;
+    }
+  }
+  .main-content {
+    color: $mine-shaft;
+    max-width: 1000px;
+    margin: 0 auto;
+    @include breakpoint($fullscreen) {
+      padding: 50px 20px 180px;
+    }
+  }
+  .event-details {
+    margin-bottom: 15px;
+  }
+  .masonry-container {
+    margin: 0 auto 20px;
+    width: 100%;
+  }
+  .guest-book-and-form {
+    float: right;
+    margin: 0 auto;
+    max-width: 730px;
+    width: 100%;
+    @include breakpoint($fullscreen) {
+      margin: 0 auto;
+      width: 75%;
+    }
+    &.full-width {
+      float: none;
+    }
+  }
+
+  .event-page--loading {
+    text-align: center;
+  }
+
+  @include breakpoint($fullscreen) {
+    .clear-mobile {
+      clear: none;
+    }
+  }
+
+  .actions-menu {
+    background: $black;
+    color: $alto;
+    font-family: "Adobe Garamond Italic";
+    font-size: 16px;
+    text-align: left;
+    position: relative;
+    right: 42px;
+    top: 26px;
+    z-index: 100;
+    @include border-radius(3px);
+    @include user-select(none);
+    &::before {
+      border-left: solid 10px transparent;
+      border-bottom: solid 10px $black;
+      border-right: solid 10px transparent;
+      content: "";
+      display: block;
+      height: 0px;
+      position: absolute;
+      right: 12px;
+      top: -10px;
+      width: 0px;
+    }
+    .action-entry {
+      background-position: bottom;
+      background-repeat: repeat-x;
+      background-size: 3px 1px;
+      color: inherit;
+      cursor: pointer;
+      display: block;
+      padding: 15px;
+      text-decoration: inherit;
+    }
+  }
+
+  .card-image {
+    @include box-shadow(0px 0px 2px 1px rgba(0,0,0,0.2));
+    &.card-image--novelty {
+      -webkit-filter: drop-shadow(0px 0px 2px rgba(17,17,17,0.6));
+      filter: url(/images/svgs/event-page-drop-shadow.svg#drop-shadow);
+      @include box-shadow(none);
+    }
+  }
+
+  .placeholder {
+    color: $silver;
+  }
+}
+
+.modal--scrolling {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.placeholder-background {
+  @include shifted-horiz-gradient(transparentize(#ebf1fd, .5), transparentize(#f0e3e3, .3), 50%);
+}
+
+.placeholder-background--empty {
+  @extend .placeholder-background;
+  min-height: 88vh;
+  @include breakpoint(787px) {
+    min-height: 80vh;
+  }
+}
+
+.border-fade-horizontal.border-fade-horizontal--transparent {
+  @include transparent-border-gradient(left, 0, $white, 14.99%, 85.01%);
+  &.rsvp-border {
+    margin-bottom: 30px;
+  }
+}
+
+.reply-page-preview-nav {
+  z-index: 2;
+}
+
+.holiday-cta {
+  background: transparentize($white, .2);
+  bottom: 0px;
+  display: none;
+  margin-top: 70px;
+  padding: 50px 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 100;
+  @include vertical-gradient(transparentize($white, 1), $white, $white, 35%);
+  &.relative {
+    position: relative;
+    bottom: 0;
+  }
+  .cta-container {
+    color: #ed3e3e;
+    display: inline-block;
+    letter-spacing: 0.15em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    &:before, &:after {
+      background-size: 100% 100%;
+      content: " ";
+      display: inline-block;
+      height: 50px;
+      width: 135px;
+    }
+    &:before {
+      background-image: url('/images/event_page/holiday_cta/pine_left.png');
+      margin-right: 12px;
+    }
+    &:after {
+      background-image: url('/images/event_page/holiday_cta/pine_right.png');
+      margin-left: 12px;
+    }
+    &:hover {
+      span {
+        border-bottom: 1px solid #ed3e3e;
+      }
+    }
+    span {
+      padding-bottom: 3px;
+      position: relative;
+      top: -18px;
+    }
+  }
+  @include breakpoint($fullscreen) {
+    display: block;
+  }
+}
+
+.clearfooter {
+  @include breakpoint($fullscreen) {
+    height: 150px;
+  }
+}
+
+#pp-new, #main {
+  @include breakpoint($fullscreen) {
+    &.holiday-relative {
+      margin-bottom: -286px;
+    }
+  }
+}
+
+footer {
+  overflow: auto;
+  width: 100%;
+}

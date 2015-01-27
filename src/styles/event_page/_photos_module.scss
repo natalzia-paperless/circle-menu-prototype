@@ -1,0 +1,62 @@
+.event-photos-module {
+  padding: 12px;
+  position: relative;
+}
+
+.event-photos-module--empty {
+  @extend .event-photos-module;
+  display: none;
+  @include breakpoint($fullscreen) {
+    display: block;
+  }
+}
+
+.event-photos-module--empty__body {
+  color: $mine-shaft;
+  display: block;
+  font-size: 14px;
+  line-height: 26px;
+  text-align: center;
+  svg {
+    fill: $boulder;
+    height: 14px;
+    position: relative;
+    top: 3px;
+    width: 12px;
+  }
+}
+.event-photos-module--full {
+  @extend .event-photos-module;
+  padding: 0;
+}
+
+.event-photos-module--full__background-image {
+  background-position: 50% 50%;
+  background-size: cover;
+  float: left;
+  height: 140px;
+  position: relative;
+  width: 100%;
+  &:nth-child(2) {
+    display: none;
+  }
+  @include breakpoint($fullscreen) {
+    height: 336px;
+    width: 50%;
+    &:nth-child(2) {
+      display: block;
+    }
+  }
+}
+.event-photos-module--full__background-image--placeholder {
+  @extend .event-photos-module--full__background-image;
+  border-bottom: 1px solid $alto;
+  //Background gradient styles
+  @include horiz-gradient(#eceef0, #f0e8e3);
+  .placeholder-content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    @include transform(translate(-50%, -50%));
+  }
+}

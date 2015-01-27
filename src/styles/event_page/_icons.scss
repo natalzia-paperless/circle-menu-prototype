@@ -1,0 +1,13 @@
+.new-event-page-content {
+  .icon {
+    background-size: cover;
+    height: 25px;
+    width: 25px;
+  }
+  .icon--back-arrow {
+    @extend .icon;
+    background-image: url('/images/svgs/back-arrow.svg');
+    height: 20px;
+    width: 25px;
+  }
+}

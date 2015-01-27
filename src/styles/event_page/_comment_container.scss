@@ -1,0 +1,281 @@
+.comment-container {
+  position: relative;
+  width: 100%;
+  a, a:hover {
+    color: $driftwood;
+    text-decoration: none;
+  }
+}
+
+.comment-container--empty {
+  @extend .comment-container;
+  text-align: center;
+}
+
+.comment-locked__text {
+  color: $boulder;
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.comment-locked__icon {
+  margin: 15px 0 10px;
+  text-align: center;
+  svg {
+    fill: $boulder;
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.like-action {
+  color: $driftwood;
+  cursor: pointer;
+  font-size: 14px;
+  span {
+    position: relative;
+    top: -2px;
+  }
+}
+.comment-container__comment {
+  margin-bottom: 20px;
+  padding: 0 10px;
+  width: 100%;
+  @include prefix(user-select, none);
+  @include breakpoint($fullscreen) {
+    float: left;
+    width: 33%;
+    @include prefix(user-select, text);
+  }
+  &:hover {
+    .delete-comment {
+      display: block;
+    }
+  }
+  .delete-comment {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    right: 18px;
+    top: 6px;
+    width: 12px;
+    z-index: 100;
+    svg {
+      width: 100%;
+    }
+  }
+  .delete-comment--image {
+    @extend .delete-comment;
+    background-color: $white;
+    height: 30px;
+    opacity: .9;
+    padding: 6px;
+    text-align: center;
+    width: 30px;
+    @include border-radius(50%);
+    svg {
+      fill: $charcoal;
+      width: 12px;
+    }
+  }
+  .comment-container__content {
+    border: 1px solid $alto;
+    font-size: 18px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  .comment-body {
+    font-size: 20px;
+    line-height: 22px;
+    margin: 0 auto 10px;
+    width: 80%;
+    word-wrap: break-word;
+  }
+  .comment-body--nested {
+    line-height: 18px;
+    word-wrap: break-word;
+  }
+  .comment-author {
+    font-size: 14px;
+  }
+  .nested-comments {
+    padding: 0px 20px;
+    text-align: left;
+  }
+  .comment-actions {
+    font-size: 14px;
+    margin: 20px 0 16px;
+    position: relative;
+    a {
+      padding: 0 5px;
+    }
+    .heart-action svg{
+      fill: $driftwood;
+      height: 20px;
+      position: relative;
+      top: 4px;
+      width: 15px;
+    }
+
+    svg {
+      fill: $driftwood;
+      height: 16px;
+
+    }
+  }
+  .comment-media img {
+    width: 100%;
+  }
+  .comment-time {
+    color: $silver;
+    font-size: 12px;
+    margin: 10px;
+    position: relative;
+    text-align: left;
+  }
+  .additional-comment-info {
+    svg {
+      fill: $driftwood;
+      float: left;
+      height: 14px;
+      margin-right: 2px;
+      position: relative;
+      top: 2px;
+      width: 12px;
+    }
+  }
+  .nested-information {
+    border-top: 1px solid $alto;
+    padding: 15px 0;
+  }
+  .comment-likes-container {
+    padding: 0 20px;
+    text-align: left;
+    &.likes-only {
+      text-align: center;
+      svg {
+        display: inline;
+        float: none;
+        margin-right: 5px;
+      }
+      .comment-likes-container__liker-container {
+        display: inline;
+        float: none;
+      }
+    }
+    svg {
+      fill: $boulder;
+    }
+  }
+  .comment-likes-container__liker-container {
+    float: right;
+    line-height: 12px;
+    @include calc(width, "100% - 17px");
+  }
+  .comment-likes-container__liker {
+    color: $boulder;
+    display: inline;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .comment-likes-container__liker--truncated {
+    @extend .comment-likes-container__liker;
+    color: $driftwood;
+    cursor: pointer;
+  }
+  .nested-comments__comment-delete {
+    cursor: pointer;
+    display: none;
+    height: 12px;
+    position: absolute;
+    svg {
+      fill: $mine-shaft;
+      position: relative;
+      top: 4px;
+      width: 12px;
+    }
+    &.is-active {
+      display: inline-block;
+    }
+  }
+}
+
+.comment-container__comment--placeholder {
+  @extend .comment-container__comment;
+  cursor: pointer;
+  display: none;
+  @include breakpoint($fullscreen) {
+    display: block;
+  }
+  .comment-container__content {
+    border: 1px dashed $driftwood;
+    padding-bottom: 100%;
+  }
+  .placeholder-content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    @include transform(translate(-50%, -50%));
+  }
+  .placeholder-content__icon {
+    margin: 0 auto;
+    width: 30px;
+    svg {
+      fill: $boulder;
+    }
+  }
+  .placeholder-content__text {
+    color: $boulder;
+    font-size: 14px;
+  }
+}
+
+.nested-comments {
+  font-size: 12px;
+  margin-top: 10px;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+.nested-comments__comment {
+  float: right;
+  @include calc(width, "100% - 17px");
+  &:hover {
+    .nested-comments__comment-delete {
+      display: inline-block;
+    }
+  }
+}
+.nested-comment-container {
+  @include clearfix;
+}
+
+.comment-actions__like {
+  &.animate-heart {
+    svg {
+      @include prefix(animation, pulse .5s);
+      @include prefix(animation-play-state, running);
+      @include prefix(animation-timing-function, ease-in-out);
+    }
+  }
+}
+
+@include keyframes(pulse) {
+  0%, 100% {
+    @include prefix(transform, scale(1));
+  }
+
+  35%, 65% {
+    @include prefix(transform, scale(1.45));
+  }
+
+  50% {
+    @include prefix(transform, scale(1.5));
+  }
+}
