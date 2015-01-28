@@ -12,7 +12,7 @@ $(function(){
     saveState: function() {
       var newHash = this.createHash();
       this.states.push({
-        content: $('.js-viewport-current').html(),
+        content: PP.CircleMenu.currentComponent ? PP.CircleMenu.currentComponent.state : $('.js-viewport-current').html(),
         hash: newHash,
         scroll: $('.js-viewport-current').scrollTop(),
         partial: PP.CircleMenu.currentPartial 
@@ -56,17 +56,17 @@ $(function(){
   })
 
   $('body').on('click', '.js-slide-change', function() {
-    PP.CircleMenu.currentIndex++;
-    $('.js-circle').removeClass('rotate');
-    $('.js-menu-holder').removeClass('open');
-    //Change based on what is selected
-    PP.CircleMenu.lastTransition = "left";
-    PP.CircleMenu.currentPartial = $(this).data('partial');
-    changeViewport();
+    // PP.CircleMenu.currentIndex++;
+    // $('.js-circle').removeClass('rotate');
+    // $('.js-menu-holder').removeClass('open');
+    // //Change based on what is selected
+    // PP.CircleMenu.lastTransition = "left";
+    // PP.CircleMenu.currentPartial = $(this).data('partial');
+    // changeViewport();
 
     /*if ($('.text-el').length) {
       PP.CircleMenu.reactComponent.setState({
-        text: "newText"
+        text: Math.random().toString(36).substring(10)
       });
       $('.text-el').removeClass('text-el').addClass('remove-el');
     } else if ($('.remove-el').length) {
@@ -82,6 +82,14 @@ $(function(){
       }
     }*/
 
+    var key = Math.random().toString(36).substring(10);
+    PP.CircleMenu.currentIndex++;
+    PP.CircleMenu.currentPartial = key;
+    $('.js-circle').removeClass('rotate');
+    $('.js-menu-holder').removeClass('open');
+    PP.CircleMenu.lastTransition = "left";
+
+    changeViewport();
     
   });
 
@@ -104,11 +112,13 @@ $(function(){
       $('.js-viewport-current').off('scroll.saveState')
 
       var newViewport = $('.'+jsClass);
-      if (PP.CircleMenu.lastTransition === "left") {
+      var content = r;
+
+      /*if (PP.CircleMenu.lastTransition === "left") {
         newViewport.append(r);
       } else {
         newViewport.prepend(r);
-      }
+      }*/
       //$('.js-vpt-ctnr').addClass(PP.CircleMenu.lastTransition);
       //testing velocity
       var value = PP.CircleMenu.lastTransition === "left" ? -200 : 0;
@@ -118,6 +128,13 @@ $(function(){
       if (s) {
         newViewport.scrollTop(s);
       }
+
+      PP.CircleMenu.currentComponent = PP.CircleMenu.reactComponent = React.render(
+        React.createElement(ReactComponents.GuestList),
+        document.querySelector('.'+jsClass)
+      );
+
+      PP.CircleMenu.currentComponent.setState(r);
     }
 
     if (PP.CircleMenu.states[PP.CircleMenu.currentIndex]) {
@@ -146,14 +163,16 @@ $(function(){
 
       PP.CircleMenu.states.splice(PP.CircleMenu.currentIndex, PP.CircleMenu.states.length);
 
-      var ajaxUrl = PP.CircleMenu.currentPartial;
+      appendInfo({});
+
+      /*var ajaxUrl = PP.CircleMenu.currentPartial;
       $.ajax({
         url: ajaxUrl,
         type: "GET",
         success: function(r) {
           appendInfo(r);
         }
-      });
+      });*/
     }
   }
 
