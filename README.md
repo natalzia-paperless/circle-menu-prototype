@@ -1,6 +1,6 @@
-# prototype-template
+# circle-menu-template
 
-A grunt skeleton useful for quickly prototyping ideas
+A prototype that includes a circle menu for navigation
 
 ## File structure ##
 All code in `src/styles/main.scss` is exported into `public/styles/main.css` with any includes
