@@ -15,10 +15,11 @@ $(function(){
         content: PP.CircleMenu.currentComponent ? PP.CircleMenu.currentComponent.state : $('.js-viewport-current').html(),
         hash: newHash,
         scroll: $('.js-viewport-current').scrollTop(),
-        partial: newHash,
         type: (type || "react")
       });
       this.currentHash = newHash;
+
+      console.log(this.states);
     },
     saveStateScroll: function() {
       this.states[this.currentIndex].scroll = $('.js-viewport-current').scrollTop();
@@ -56,35 +57,9 @@ $(function(){
   })
 
   $('body').on('click', '.js-slide-change', function() {
-    // PP.CircleMenu.currentIndex++;
-    // $('.js-circle').removeClass('rotate');
-    // $('.js-menu-holder').removeClass('open');
-    // //Change based on what is selected
-    // PP.CircleMenu.lastTransition = "left";
-    // PP.CircleMenu.currentPartial = $(this).data('partial');
-    // changeViewport();
-
-    /*if ($('.text-el').length) {
-      PP.CircleMenu.reactComponent.setState({
-        text: Math.random().toString(36).substring(10)
-      });
-      $('.text-el').removeClass('text-el').addClass('remove-el');
-    } else if ($('.remove-el').length) {
-      PP.CircleMenu.reactState = PP.CircleMenu.reactComponent.state;
-      React.unmountComponentAtNode(document.getElementById('react-container'));
-    } else {
-      PP.CircleMenu.reactComponent = React.render(
-        React.createElement(ReactComponents.GuestList),
-        document.getElementById('react-container')
-      );
-      if (PP.CircleMenu.reactState) {
-        PP.CircleMenu.reactComponent.setState(PP.CircleMenu.reactState);
-      }
-    }*/
-
     var key = Math.random().toString(36).substring(10);
     PP.CircleMenu.currentIndex++;
-    PP.CircleMenu.currentPartial = key;
+    PP.CircleMenu.currentHash = key;
     $('.js-circle').removeClass('rotate');
     $('.js-menu-holder').removeClass('open');
     PP.CircleMenu.lastTransition = "left";
@@ -141,7 +116,7 @@ $(function(){
       var states = PP.CircleMenu.states;
       for (var i = 0; i < states.length; i++) {
         var s = states[i];
-        if (s.partial === PP.CircleMenu.currentPartial) {
+        if (s.hash === PP.CircleMenu.currentHash) {
           if (PP.CircleMenu.currentIndex === i) {
             // if the next index is this partial
             appendInfo(s.content, s.scroll);
@@ -162,15 +137,6 @@ $(function(){
       PP.CircleMenu.states.splice(PP.CircleMenu.currentIndex, PP.CircleMenu.states.length);
 
       appendInfo({});
-
-      /*var ajaxUrl = PP.CircleMenu.currentPartial;
-      $.ajax({
-        url: ajaxUrl,
-        type: "GET",
-        success: function(r) {
-          appendInfo(r);
-        }
-      });*/
     }
   }
 
