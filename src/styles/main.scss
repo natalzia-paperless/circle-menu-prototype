@@ -105,6 +105,10 @@ body {
   }
 }
 
+.text-el {
+  padding: 0 15px;
+}
+
 .circle--small {
   @extend .circle;
   height: 40px;
