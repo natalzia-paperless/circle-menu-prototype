@@ -9,13 +9,14 @@ $(function(){
     createHash: function() {
       return Math.random().toString(36).substring(10);
     },
-    saveState: function() {
+    saveState: function(type) {
       var newHash = this.createHash();
       this.states.push({
         content: PP.CircleMenu.currentComponent ? PP.CircleMenu.currentComponent.state : $('.js-viewport-current').html(),
         hash: newHash,
         scroll: $('.js-viewport-current').scrollTop(),
-        partial: PP.CircleMenu.currentPartial 
+        partial: newHash,
+        type: (type || "react")
       });
       this.currentHash = newHash;
     },
@@ -27,8 +28,7 @@ $(function(){
     }
   };
 
-  PP.CircleMenu.createHash();
-  PP.CircleMenu.saveState();
+  PP.CircleMenu.saveState('jquery');
 
   var hammer = new Hammer(document.querySelector('.js-vpt-ctnr'), {});
 
@@ -114,12 +114,17 @@ $(function(){
       var newViewport = $('.'+jsClass);
       var content = r;
 
-      /*if (PP.CircleMenu.lastTransition === "left") {
-        newViewport.append(r);
+      if (!PP.CircleMenu.states[PP.CircleMenu.currentIndex] || PP.CircleMenu.states[PP.CircleMenu.currentIndex].type === "react") {
+        PP.CircleMenu.currentComponent = PP.CircleMenu.reactComponent = React.render(
+          React.createElement(ReactComponents.GuestList),
+          document.querySelector('.'+jsClass)
+        );
+
+        PP.CircleMenu.currentComponent.setState(r);
       } else {
-        newViewport.prepend(r);
-      }*/
-      //$('.js-vpt-ctnr').addClass(PP.CircleMenu.lastTransition);
+        newViewport.append(r);
+      }
+
       //testing velocity
       var value = PP.CircleMenu.lastTransition === "left" ? -200 : 0;
       $('.js-vpt-ctnr').velocity({
@@ -128,13 +133,6 @@ $(function(){
       if (s) {
         newViewport.scrollTop(s);
       }
-
-      PP.CircleMenu.currentComponent = PP.CircleMenu.reactComponent = React.render(
-        React.createElement(ReactComponents.GuestList),
-        document.querySelector('.'+jsClass)
-      );
-
-      PP.CircleMenu.currentComponent.setState(r);
     }
 
     if (PP.CircleMenu.states[PP.CircleMenu.currentIndex]) {
