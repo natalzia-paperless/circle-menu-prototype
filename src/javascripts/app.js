@@ -1,6 +1,8 @@
 var PP = {};
 var React = require('react');
 var ReactComponents = require('./react_components/components');
+var Router = require('react-router');
+var { Route, RouteHandler, Link } = Router;
 
 $(function(){
   PP.CircleMenu = {
