@@ -25,6 +25,15 @@ module.exports = function(grunt) {
         }
       }
     },
+    browserify: {
+      main: {
+        src: ['src/javascripts/app.js'],
+        dest: 'public/javascripts/app.js',
+        options: {
+          transform: ['reactify']
+        }
+      }
+    },
     connect: {
       server: {
         options: {
@@ -56,11 +65,11 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      js: {
+      jsLib: {
         expand: true,
-        cwd: 'src/javascripts',
+        cwd: 'src/javascripts/lib',
         src: '**',
-        dest: 'public/javascripts',
+        dest: 'public/javascripts/lib',
         flatten: false,
         filter: 'isFile',
       },
@@ -92,7 +101,11 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['src/javascripts/**/*.js'],
-        tasks: ['copy:js'],
+        tasks: ['browserify'],
+      },
+      libScripts: {
+        files: ['src/javascripts/lib/*.js'],
+        tasks: ['copy:jsLib']
       },
       images: {
         files: ['src/img/**/*'],
@@ -117,8 +130,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-browserify');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean:public', 'haml', 'compass', 'copy', 'watch']);
-
+  grunt.registerTask('default', ['clean:public', 'haml', 'compass', 'browserify', 'copy']);
 };

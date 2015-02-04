@@ -1,4 +1,7 @@
 var PP = {};
+var React = require('react');
+var ReactComponents = require('./react_components/components');
+
 $(function(){
   PP.CircleMenu = {
     lastTransition: "",
