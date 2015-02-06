@@ -5,7 +5,7 @@ ReactComponents.GuestList = React.createClass({
   getInitialState:function() {
     var textArr = [];
     var urls = [];
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < 100; i++) {
       var imgW = Math.floor(Math.random() * 100) + 300;
       var imgH = Math.floor(Math.random() * 100) + 100;
 
@@ -28,7 +28,7 @@ ReactComponents.GuestList = React.createClass({
   },
   getAllComponents: function() {
     var arr = [];
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < 100; i++) {
       var txt = this.state.text[i];
       arr.push(
         <div>

@@ -30,7 +30,7 @@ module.exports = function(grunt) {
         src: ['src/javascripts/app.js'],
         dest: 'public/javascripts/app.js',
         options: {
-          transform: ['reactify']
+          transform: ['reactify', '6to5ify']
         }
       }
     },
